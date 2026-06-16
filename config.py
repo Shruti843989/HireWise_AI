@@ -38,7 +38,8 @@ class Config:
     MAX_CONTENT_LENGTH = 30 * 1024 * 1024
 
     # AI Service Keys
-    GOOGLE_API_KEY = os.environ.get("GOOGLE_API_KEY", "")
+    GOOGLE_API_KEY = os.environ.get("GEMINI_API_KEY") or os.environ.get("GOOGLE_API_KEY") or ""
+    CLAUDE_API_KEY = os.environ.get("CLAUDE_API_KEY") or os.environ.get("ANTHROPIC_API_KEY") or ""
     
     # Whisper settings
     WHISPER_MODEL_NAME = os.environ.get("WHISPER_MODEL_NAME", "tiny")

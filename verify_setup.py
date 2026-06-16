@@ -170,8 +170,8 @@ def run_verification():
         from services.cv_service import CVService
         cv_instance = CVService()
         test_gaze = cv_instance.analyze_video("non_existent_video.webm")
-        if isinstance(test_gaze, float) and 70.0 <= test_gaze <= 85.0:
-            print_result("OpenCV Gaze Fallback check", True, f"Successfully mapped fallback score: {test_gaze}%")
+        if isinstance(test_gaze, dict) and "eye_contact" in test_gaze and "confidence" in test_gaze:
+            print_result("OpenCV Gaze Fallback check", True, f"Successfully mapped fallback scores: {test_gaze}")
         else:
             print_result("OpenCV Gaze Fallback check", False, f"Returned invalid score format: {test_gaze}")
             overall_pass = False

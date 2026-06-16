@@ -1,4 +1,11 @@
 import os
+from dotenv import load_dotenv
+from pathlib import Path
+
+# Load environment variables at the very beginning of the application startup
+BASE_DIR = Path(__file__).resolve().parent
+load_dotenv(BASE_DIR / ".env")
+
 from flask import Flask, send_from_directory, request, render_template
 from flask_login import LoginManager
 from config import Config
@@ -39,11 +46,13 @@ def create_app():
     from routes.dashboard import dashboard_bp
     from routes.interview import interview_bp
     from routes.resume import resume_bp
+    from routes.mentor import mentor_bp
     
     app.register_blueprint(auth_bp)
     app.register_blueprint(dashboard_bp)
     app.register_blueprint(interview_bp)
     app.register_blueprint(resume_bp)
+    app.register_blueprint(mentor_bp)
     
     # Context processor to inject active navigation class helpers into templates
     @app.context_processor
