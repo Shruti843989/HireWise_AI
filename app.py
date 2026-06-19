@@ -1,9 +1,11 @@
 import os
+import sys
 from dotenv import load_dotenv
 from pathlib import Path
 
-# Load environment variables at the very beginning of the application startup
+# Load environment variables and set python path at application startup
 BASE_DIR = Path(__file__).resolve().parent
+sys.path.insert(0, str(BASE_DIR))
 load_dotenv(BASE_DIR / ".env")
 
 from flask import Flask, send_from_directory, request, render_template
